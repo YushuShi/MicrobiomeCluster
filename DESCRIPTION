@@ -1,0 +1,14 @@
+Package: MicrobiomeCluster
+Type: Package
+Title: Microbiome Dataset Manipulating and Clustering
+Version: 1.0
+Date: 2023-01-11
+Author: Yushu Shi, Robert Jenq
+Maintainer: Yushu Shi <shiyushu2006@gmail.com>
+Description: Basic functions calculating OTU and tree node abundance. In addition, it also provides distance and levels of the phylogenetic tree nodes and tips from the tree root. Researchers can use MicrobiomeCluster package to manipulate an existing tree by trimming or growing branches, or check if a Beta metric is suitable to be applied for clustering a dataset. We also include a new combined Beta metric that can give good clustering performance for a variety of datasets.
+License: GPL (>= 2)
+Imports: ape, adephylo
+NeedsCompilation: no
+Repository: CRAN
+Packaged: 2022-01-29 03:46:07 UTC; ys8wp
+Depends: R (>= 2.10), mclust, GUniFrac, cluster, vegan

@@ -1,0 +1,26 @@
+growBranch<-function(tree,otutable){
+tipnum<-length(tree$tip.label)
+nodenum<-tree$Nnode
+node.label<-c(tree$node.label,tree$tip.label)
+Nnode<-tree$Nnode+length(tree$tip.label)
+tip.label<-c(paste(tree$tip.label,".1",sep=""),
+             paste(tree$tip.label,".2",sep=""))
+edgepart<-tree$edge
+edgepart[edgepart>tipnum]<-edgepart[edgepart>tipnum]+tipnum
+edgepart[edgepart<=tipnum]<-edgepart[edgepart<=tipnum]+2*tipnum+nodenum
+edge<-rbind(edgepart,
+            cbind((1:tipnum)+2*tipnum+nodenum,1:tipnum),
+            cbind((1:tipnum)+2*tipnum+nodenum,(1:tipnum)+tipnum))
+edge.length<-c(tree$edge.length,rep(min(tree$edge.length),2*tipnum))
+newtree<-list(edge=edge,
+              tip.label=tip.label,
+              node.label=node.label,
+              edge.length=edge.length,
+              Nnode=Nnode)
+class(newtree)<-"phylo"
+otutablet<-matrix(as.matrix(otutable)*rbinom(length(as.matrix(otutable)),1,0.5),
+                  nrow = nrow(otutable))
+otutablec<-rbind(as.matrix(otutable-otutablet),otutablet)
+rownames(otutablec)<-c(paste(rownames(otutable),".1",sep=""),paste(rownames(otutable),".2",sep=""))
+list(otutable=otutablec,tree=newtree)
+}

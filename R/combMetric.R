@@ -1,0 +1,11 @@
+combMetric<-function(bray,uu,alpha=0.5){
+  bray<-as.matrix(bray)
+  uu<-as.matrix(uu)
+  bray<-bray/max(bray)
+  uu<-uu/max(uu)
+  combined<-(1-alpha)*bray+alpha*uu
+  rownames(combined)<-rownames(bray)
+  colnames(combined)<-colnames(bray)
+  combined<-as.dist(combined)
+  combined
+}
